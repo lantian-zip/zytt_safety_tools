@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071426"><title>数字格式化预览 | 蓝域工具站</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .tool-page{max-width:720px;margin:75px auto 110px;padding:0 24px}
+    .back{color:#79dced;text-decoration:none;font-size:12px}.panel{margin-top:25px;padding:28px;background:#0b1b2e;border:1px solid var(--line);border-radius:14px}
+    label.field{display:block;color:#91a9c0;font-size:12px;margin:18px 0 8px}
+    input[type=number],select{width:100%;padding:13px 14px;border:1px solid #25425c;background:#071522;border-radius:8px;color:#eaf4ff;font:inherit;outline:none}
+    input:focus,select:focus{border-color:#45d7f5}
+    .result{margin-top:20px;padding:20px;background:#071522;border:1px solid #22516b;border-radius:9px}
+    .result small{color:#7896b0}.result strong{display:block;color:#5de1ef;font-size:36px;margin-top:4px;overflow-wrap:anywhere}
+    .hint{color:#8099b1;font-size:11px;line-height:1.8;margin-top:16px}
+    .copy{margin-top:15px;padding:10px 14px;border:0;border-radius:7px;background:#16435c;color:#b9f5ff;cursor:pointer}
+  </style>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">B</span><span><b>蓝域工具站</b><small>CCW × SCRATCH TOOLBOX</small></span></a><a class="github-link" href="../index.html">返回首页</a></header>
+<main class="tool-page">
+  <a class="back" href="../index.html#tools">← 返回工具列表</a>
+  <div class="eyebrow" style="margin-top:30px">SCRATCH / NUMBER FORMAT</div>
+  <h1 style="font-size:42px;margin-top:12px">数字<span>格式化</span>预览</h1>
+  <p style="color:#91a9c0;font-size:13px">输入一个数字，查看缩写显示效果。适合设计 Scratch 变量显示或扩展积木。</p>
+  <section class="panel">
+    <label class="field" for="numberInput">输入数字</label>
+    <input id="numberInput" type="number" value="1250000" step="any">
+    <label class="field" for="precision">小数位数</label>
+    <select id="precision"><option value="0">0 位</option><option value="1" selected>1 位</option><option value="2">2 位</option><option value="3">3 位</option></select>
+    <div class="result"><small>格式化结果</small><strong id="output">1.3M</strong></div>
+    <button class="copy" id="copyButton">复制结果</button>
+    <p class="hint">规则：绝对值小于 1,000 时原样显示；之后依次使用 K、M、B、T。此页面仅在浏览器本地计算，不会上传输入内容。</p>
+  </section>
+</main>
+<script>
+const numberInput=document.querySelector("#numberInput"), precision=document.querySelector("#precision"), output=document.querySelector("#output");
+function formatNumber(value,digits){
+  if(!Number.isFinite(value)) return "请输入有效数字";
+  const units=["","K","M","B","T","Qa","Qi"];
+  let n=value, unit=0;
+  while(Math.abs(n)>=1000 && unit<units.length-1){n/=1000;unit++;}
+  if(unit===0) return String(value);
+  return n.toFixed(digits).replace(/(\.\d*?[1-9])0+$/,"$1").replace(/\.0+$/,"")+units[unit];
+}
+function render(){output.textContent=formatNumber(Number(numberInput.value),Number(precision.value));}
+numberInput.addEventListener("input",render);precision.addEventListener("change",render);
+document.querySelector("#copyButton").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(output.textContent);document.querySelector("#copyButton").textContent="已复制";}catch{document.querySelector("#copyButton").textContent="复制失败，请手动复制";}});
+render();
+</script>
+</body></html>
