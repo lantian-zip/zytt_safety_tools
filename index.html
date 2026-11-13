@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="CCW / Scratch 工具站：实用小工具、开发资源与教程。">
+  <title>蓝域工具站 | CCW × Scratch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="蓝域工具站首页">
+      <span class="brand-mark">B</span>
+      <span><b>蓝域工具站</b><small>CCW × SCRATCH TOOLBOX</small></span>
+    </a>
+    <nav>
+      <a href="#tools">工具</a><a href="#resources">资源</a><a href="#about">关于</a>
+    </nav>
+    <a class="github-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> CREATIVE DEVELOPER HUB</div>
+      <h1>让创意，<span>运行得更远。</span></h1>
+      <p class="hero-copy">为 CCW 与 Scratch 创作者准备的轻量工具箱。<br>整理开发资源，让每一次创作都更顺手。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tools">探索工具 <span>↓</span></a>
+        <a class="btn btn-ghost" href="#resources">查看开发资源</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>01</strong><small>工具集合</small></div>
+        <i></i><div><strong>∞</strong><small>创作可能</small></div>
+        <i></i><div><strong>FREE</strong><small>免费访问</small></div>
+      </div>
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <div class="hero-core"><div class="core-inner">B<span>+</span></div></div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-heading">
+        <div><div class="eyebrow">TOOLBOX / 01</div><h2>实用工具</h2><p>常用开发辅助工具，后续可以继续添加。</p></div>
+        <span class="count" id="toolCount">01 TOOL</span>
+      </div>
+      <div class="toolbar">
+        <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="搜索工具名称或关键词…" autocomplete="off"></label>
+        <div class="filters" role="group" aria-label="工具分类">
+          <button class="filter active" data-filter="all">全部</button>
+          <button class="filter" data-filter="scratch">Scratch</button>
+          <button class="filter" data-filter="ccw">CCW</button>
+          <button class="filter" data-filter="dev">开发辅助</button>
+        </div>
+      </div>
+      <div class="tool-grid" id="toolGrid">
+        <article class="tool-card" data-category="scratch" data-search="数字格式化 k b 单位 scratch 数字显示">
+          <div class="card-top"><span class="tool-icon cyan">#</span><span class="tag">SCRATCH</span></div>
+          <h3>数字格式化预览</h3>
+          <p>将大数字转换为 K、M、B 等简洁形式，预览 Scratch 扩展中的显示效果。</p>
+          <div class="number-demo"><span>1,250,000</span><b>→</b><strong>1.25M</strong></div>
+          <a class="card-link" href="tools/number-format.html">打开工具 <span>↗</span></a>
+        </article>
+        <article class="tool-card coming" data-category="ccw" data-search="ccw 共创世界 用户脚本 安全 使用说明">
+          <div class="card-top"><span class="tool-icon purple">⌘</span><span class="tag purple-tag">CCW</span></div>
+          <h3>CCW 脚本使用指南</h3>
+          <p>整理用户脚本的安装、启用与安全检查步骤。不会自动读取或修改 CCW 页面数据。</p>
+          <div class="card-note"><span class="status-dot"></span> 指南页面规划中</div>
+          <a class="card-link" href="#resources">查看安全建议 <span>↗</span></a>
+        </article>
+        <article class="tool-card coming" data-category="dev" data-search="scratch 扩展 开发 模板 javascript">
+          <div class="card-top"><span class="tool-icon blue">{ }</span><span class="tag blue-tag">DEV</span></div>
+          <h3>扩展开发模板</h3>
+          <p>为 Scratch / Gandi 风格扩展整理的基础结构与开发检查清单。</p>
+          <div class="card-note"><span class="status-dot"></span> 内容持续完善</div>
+          <a class="card-link" href="#resources">查看开发资源 <span>↗</span></a>
+        </article>
+      </div>
+      <div class="empty-state" id="emptyState" hidden>没有找到匹配的工具，试试其他关键词。</div>
+    </section>
+
+    <section class="section resource-section" id="resources">
+      <div class="section-heading">
+        <div><div class="eyebrow">RESOURCES / 02</div><h2>开发资源</h2><p>常用平台与文档入口，点击即可访问。</p></div>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://www.ccw.site/" target="_blank" rel="noreferrer"><span class="resource-symbol">◈</span><span><b>共创世界 CCW</b><small>创作、分享与学习</small></span><span class="external">↗</span></a>
+        <a class="resource-card" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer"><span class="resource-symbol">S</span><span><b>Scratch</b><small>图形化编程平台</small></span><span class="external">↗</span></a>
+        <a class="resource-card" href="https://docs.github.com/pages" target="_blank" rel="noreferrer"><span class="resource-symbol">⌘</span><span><b>GitHub Pages 文档</b><small>静态网站部署指南</small></span><span class="external">↗</span></a>
+      </div>
+    </section>
+
+    <section class="notice" id="about">
+      <div class="notice-icon">i</div>
+      <div><b>关于本站</b><p>这是一个可自行修改的静态网站模板。所有页面内容由浏览器本地运行；当前版本不连接 CCW 账号、不收集用户数据，也不提供绕过平台权限或访问控制的功能。使用第三方脚本前，请先检查代码来源与权限。</p></div>
+    </section>
+  </main>
+
+  <footer><a class="footer-brand" href="#">蓝域工具站</a><span>CCW × Scratch · Built for creators</span><span>© <span id="year"></span></span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
