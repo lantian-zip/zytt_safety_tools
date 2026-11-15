@@ -3,7 +3,344 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炸鱼天团安全工具 | 防御科普站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-color: #666666;
+            color: #f0f0f0;
+            padding-top: 65px;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 顶部导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #444444;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+        .nav-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+        }
+        .nav-logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        /* 下拉菜单容器，靠右 */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            color: #dddddd;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        .dropbtn:hover {
+            color: #ffffff;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #444444;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            display: block;
+            color: #dddddd;
+            padding: 10px 14px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .dropdown-content a:hover {
+            background-color: #555;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 95%;
+            margin: 0 auto;
+            background-color: #505050;
+            padding: 45px 40px 35px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            flex: 1;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        .subtitle {
+            text-align: center;
+            color: #cccccc;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+        /* 普通锚点偏移，避开导航 */
+        #intro, #announce, #tools {
+            scroll-margin-top: 75px;
+        }
+        /* 组织介绍卡片 */
+        .intro-box {
+            background-color: #3a3a3a;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #999;
+            line-height: 1.8;
+        }
+        .intro-box h3 {
+            margin-bottom: 12px;
+            color: #fff;
+            font-size: 20px;
+        }
+        .intro-box p {
+            color: #dddddd;
+            font-size: 15px;
+        }
+        .qq-text {
+            margin-top: 10px;
+            color: #99ccff;
+        }
+        /* 公告板块 */
+        .notice-board {
+            background-color: #3a3a3a;
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #bbbbbb;
+        }
+        .notice-board h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .notice-board p {
+            color: #ddd;
+            line-height: 1.7;
+        }
+        /* 工具列表项 */
+        .tool-item {
+            background-color: #404040;
+            padding: 26px;
+            border-radius: 10px;
+            margin-bottom: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            gap: 20px;
+        }
+        .tool-item:hover {
+            background-color: #464646;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        }
+        .info h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+        .info .meta {
+            color: #bbbbbb;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .tag {
+            display: inline-block;
+            background: #555;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #eee;
+            margin-right: 8px;
+        }
+        .download-btn {
+            background: #333333;
+            color: #fff;
+            border: 1px solid #888;
+            padding: 13px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.25s;
+            white-space: nowrap;
+        }
+        .download-btn:hover {
+            background-color: #707070;
+            border-color:#aaa;
+        }
+        /* 免责声明区块（保留，无导航入口） */
+        .disclaimer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #333333;
+            border-radius: 8px;
+            color: #cccccc;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .disclaimer h4 {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #aaa;
+            font-size:14px;
+        }
+
+        /* ========== 手机端响应式规则 ========== */
+        @media (max-width: 640px) {
+            .nav-wrap {
+                flex-direction: row;
+                padding:10px 14px;
+            }
+            .dropbtn {
+                font-size:15px;
+            }
+            body {
+                padding-top: 56px;
+            }
+            .container {
+                padding:25px 18px 25px 18px;
+            }
+            h1 {
+                font-size:26px;
+            }
+            .tool-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .download-btn {
+                width:100%;
+                text-align:center;
+            }
+            #intro, #announce, #tools {
+                scroll-margin-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrap">
+            <div class="nav-logo">炸鱼天团</div>
+            <!-- 右侧下拉菜单 -->
+            <div class="dropdown">
+                <button class="dropbtn">菜单 ▾</button>
+                <div class="dropdown-content">
+                    <a href=" ">关于我们</a >
+                    <a href="#announce">公告</a >
+                    <a href="#tools">工具下载</a >
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>炸鱼天团安全工具</h1>
+        <div class="subtitle">Web安全防御科普资源站</div>
+
+        <div id="intro" class="intro-box">
+            <h3>关于我们</h3>
+            <p>炸鱼天团是专注Web安全防御学习的民间科普组织，我们致力于研究恶意攻击的防护方案，学习防御相关技术，抵制各类恶意攻击行为。本组织仅用于安全知识交流、防御方案研讨，所有资源仅限安全学习、合规防护测试使用。</p >
+            <p class="qq-text">交流QQ：【在这里填写你的QQ号】</p >
+        </div>
+
+        <div id="announce" class="notice-board">
+            <h3>📢 版本公告</h3>
+            <p>2026-11-08：站点上线，首批防御学习资源开放下载。所有资料仅用于防御技术学习，禁止非授权测试。后续会持续更新防护规则、学习文档。</p >
+        </div>
+
+        <h3 style="margin-bottom:16px;">📦 资源下载区</h3>
+        <div id="tools">
+            <div class="tool-item">
+                <div class="info">
+                    <h3>防御工具 V1.0</h3>
+                    <div class="meta">
+                        <span class="tag">基础版</span>
+                        <span>大小：12MB | 更新时间：2026-11-08</span>
+                    </div>
+                    <p>基础防护学习包，包含基础防护规则与示例文档</p >
+                </div>
+                <a href="防御工具V1.0.zip" download class="download-btn">下载</a >
+            </div>
+
+            <div class="tool-item">
+                <div class="info">
+                    <h3>防御工具 V2.0</h3>
+                    <div class="meta">
+                        <span class="tag">增强版</span>
+                        <span>大小：24MB | 更新时间：2026-11-08</span>
+                    </div>
+                    <p>防护规则更新，新增常见攻击特征识别案例</p >
+                </div>
+                <a href="防御工具V2.0.zip" download class="download-btn">下载</a >
+            </div>
+
+            <div class="tool-item">
+                <div class="info">
+                    <h3>防护学习文档包</h3>
+                    <div class="meta">
+                        <span class="tag">资料</span>
+                        <span>大小：8MB | 更新时间：2026-11-08</span>
+                    </div>
+                    <p>Web防御知识文档、原理讲解、防护思路参考</p >
+                </div>
+                <a href="防护学习文档包.zip" download class="download-btn">下载</a >
+            </div>
+        </div>
+
+        <div id="disclaimer" class="disclaimer">
+            <h4>免责声明</h4>
+            <p>本站所有资源仅面向网络安全爱好者，用于合法安全学习、本地授权环境下的防御研究。严禁将资源用于任何未经授权的扫描、入侵、破坏等违法行为。使用者需自行承担使用资源产生的全部责任，本组织不承担任何连带法律责任。如你不认可本声明，请立即离开本站。</p >
+        </div>
+
+        <div class="footer">
+            © 2026 炸鱼天团 | 安全防御科普站点
+        </div>
+    </div>
+</body>
+</html>=1.0">
     <meta name="theme-color" content="#071426">
     <meta name="description" content="CCW / Scratch 创作者工具站：数据格式化、脚本下载与开发资源。">
     <title>蓝域工具站 | CCW × Scratch</title>
