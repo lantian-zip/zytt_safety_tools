@@ -466,12 +466,16 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     margin-top: 18px;
     padding: 11px;
+    border: 0;
     border-radius: 8px;
     background: linear-gradient(100deg,#2563eb,#6366f1);
     color: #fff;
+    font-family: inherit;
     font-size: 14px;
+    cursor: pointer;
     transition: .25s;
 }
 
@@ -704,35 +708,13 @@ nav {
 
 <script>
 
-// ==================== 分类配置 ====================
-
 const categoryNames = {
     js: "JS 脚本",
     scratch: "Scratch 作品源码",
     tutorial: "使用及教程"
 };
 
-// ==================== 资源数据区域 ====================
-// 所有资源均在这里添加和修改
-// category:
-// js = JS 脚本
-// scratch = Scratch 作品源码
-// tutorial = 使用及教程
-//
-// url = 文件相对路径
-// action = 按钮显示文字
-// icon = 资源图标
-// date = 更新时间
-// version = 版本信息
-
 const resources = [
-
-    // ==========================================
-    // JS 脚本资源模板
-    // 复制下面的对象即可添加新的 JS 脚本
-    // 文件建议放在 tools 文件夹内
-    //https://ccwtools.dpdns.org/User-Script/files/CSense%E9%98%B2%E6%A3%80%E6%B5%8B4.1.user.js
-    // ==========================================
 
     {
         category: "js",
@@ -778,32 +760,10 @@ const resources = [
         date: "2026.11.15",
         description: "一个集修改变量，云数据，成就，列表等于一身的工具",
         icon: "⚙",
-        url: "ccwtools.dpdns.org/User-Script/files/CSense%E9%98%B2%E6%A3%80%E6%B5%8B4.1.user.js",
-        action: "下载脚本"
+        url: "https://ccwtools.dpdns.org/User-Script/files/CSense%E9%98%B2%E6%A3%80%E6%B5%8B4.1.user.js",
+        action: "复制链接",
+        copyLink: true
     },
-
-    /*
-    JS 脚本新增模板：
-
-    {
-        category: "js",
-        name: "脚本名称",
-        version: "V1.0",
-        type: "脚本类型",
-        date: "2026.11.15",
-        description: "脚本功能介绍。",
-        icon: "🛡",
-        url: "脚本文件名.js",
-        action: "下载脚本"
-    },
-
-    */
-
-    // ==========================================
-    // Scratch 作品源码模板
-    // 复制下面的对象即可添加新的作品源码
-    // 支持 .sb3 等项目文件
-    // ==========================================
 
     {
         category: "scratch",
@@ -817,29 +777,6 @@ const resources = [
         action: "下载源码"
     },
 
-    /*
-    Scratch 作品新增模板：
-
-    {
-        category: "scratch",
-        name: "作品名称",
-        version: "V1.0",
-        type: "Scratch 作品",
-        date: "2026.11.15",
-        description: "作品内容介绍。",
-        icon: "🎮",
-        url: "作品文件名.sb3",
-        action: "下载源码"
-    },
-
-    */
-
-    // ==========================================
-    // 使用及教程模板
-    // 复制下面的对象即可添加新的教程
-    // 教程建议使用 HTML 文件
-    // ==========================================
-
     {
         category: "tutorial",
         name: "暴力猴下载教程",
@@ -850,28 +787,9 @@ const resources = [
         icon: "📖",
         url: "/zytt_savety_tools/tools/暴力猴下载教程.html",
         action: "阅读教程"
-    },
-
-    /*
-    教程新增模板：
-
-    {
-        category: "tutorial",
-        name: "教程名称",
-        version: "图文教程",
-        type: "使用指南",
-        date: "2026.11.15",
-        description: "教程内容介绍。",
-        icon: "📚",
-        url: "教程文件名.html",
-        action: "阅读教程"
-    },
-
-    */
+    }
 
 ];
-
-// ==================== 页面功能区域 ====================
 
 const categoryTabs = document.querySelectorAll(".category-tab");
 const resourceGrid = document.getElementById("resourceGrid");
@@ -880,8 +798,6 @@ const currentCategory = document.getElementById("currentCategory");
 const resultCount = document.getElementById("resultCount");
 
 let activeCategory = "js";
-
-// ==================== HTML 安全转义 ====================
 
 function escapeHTML(value) {
     return String(value).replace(/[&<>"']/g, char => ({
@@ -892,8 +808,6 @@ function escapeHTML(value) {
         "'": "&#39;"
     })[char]);
 }
-
-// ==================== 资源数量统计 ====================
 
 function updateStats() {
 
@@ -911,8 +825,6 @@ function updateStats() {
     document.getElementById("scratchTabCount").textContent = counts.scratch + " 个资源";
     document.getElementById("tutorialTabCount").textContent = counts.tutorial + " 个资源";
 }
-
-// ==================== 资源渲染 ====================
 
 function renderResources() {
 
@@ -978,13 +890,11 @@ function renderResources() {
                     ${escapeHTML(item.description)}
                 </p>
 
-                <a
-                    class="resource-btn"
-                    href="${escapeHTML(item.url)}"
-                    ${isTutorial ? "" : "download"}
-                >
-                    ${escapeHTML(item.action)}　→
-                </a>
+                ${
+                    item.copyLink
+                    ? `<button class="resource-btn" type="button" data-copy-url="${escapeHTML(item.url)}">${escapeHTML(item.action)}　→</button>`
+                    : `<a class="resource-btn" href="${escapeHTML(item.url)}" ${isTutorial ? "" : "download"}>${escapeHTML(item.action)}　→</a>`
+                }
 
             </article>
         `;
@@ -992,8 +902,6 @@ function renderResources() {
     }).join("");
 
 }
-
-// ==================== 分类切换 ====================
 
 categoryTabs.forEach(tab => {
 
@@ -1011,11 +919,34 @@ categoryTabs.forEach(tab => {
 
 });
 
-// ==================== 搜索功能 ====================
-
 searchInput.addEventListener("input", renderResources);
 
-// ==================== 初始化 ====================
+resourceGrid.addEventListener("click", async event => {
+
+    const button = event.target.closest("[data-copy-url]");
+
+    if (!button) return;
+
+    const url = button.dataset.copyUrl;
+
+    try {
+        await navigator.clipboard.writeText(url);
+    } catch {
+        const input = document.createElement("textarea");
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+    }
+
+    button.textContent = "已复制　✓";
+
+    setTimeout(() => {
+        button.textContent = "复制链接　→";
+    }, 1600);
+
+});
 
 updateStats();
 renderResources();
