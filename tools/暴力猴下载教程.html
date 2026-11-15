@@ -1,1 +1,649 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090e1c">
+<title>暴力猴下载教程 | 炸鱼天团</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    padding-top: 70px;
+    color: #e5eaf5;
+    background:
+        radial-gradient(ellipse at 15% 5%,rgba(35,91,180,.2),transparent 40%),
+        radial-gradient(ellipse at 85% 40%,rgba(91,55,170,.13),transparent 40%),
+        #090e1c;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(9,14,28,.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.nav-wrap {
+    max-width: 1000px;
+    margin: auto;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.logo span {
+    color: #60a5fa;
+}
+
+.back {
+    padding: 9px 15px;
+    color: #bfdbfe;
+    background: rgba(59,130,246,.12);
+    border: 1px solid rgba(96,165,250,.2);
+    border-radius: 8px;
+    font-size: 13px;
+    transition: .25s;
+}
+
+.back:hover {
+    background: rgba(59,130,246,.25);
+}
+
+.container {
+    max-width: 1000px;
+    width: 92%;
+    margin: 30px auto;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 55px 40px;
+    border-radius: 20px;
+    background: linear-gradient(125deg,#142746,#111a31 55%,#1b1738);
+    border: 1px solid rgba(96,165,250,.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    right: -80px;
+    top: -120px;
+    border-radius: 50%;
+    background: rgba(59,130,246,.2);
+    filter: blur(55px);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-tag {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: rgba(59,130,246,.15);
+    border: 1px solid rgba(96,165,250,.25);
+    color: #93c5fd;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    color: #fff;
+    font-size: clamp(28px,5vw,42px);
+    margin-bottom: 14px;
+}
+
+.hero p {
+    color: #aabbd5;
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 620px;
+}
+
+.hero-line {
+    width: 55px;
+    height: 4px;
+    background: linear-gradient(90deg,#60a5fa,#a78bfa);
+    border-radius: 5px;
+    margin-top: 24px;
+}
+
+.section {
+    margin-top: 35px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    color: #f1f5ff;
+    margin-bottom: 17px;
+}
+
+.section-title::before {
+    content: "";
+    width: 4px;
+    height: 22px;
+    border-radius: 5px;
+    background: linear-gradient(#60a5fa,#818cf8);
+}
+
+.panel {
+    padding: 24px;
+    background: rgba(19,29,49,.85);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 14px;
+}
+
+.panel h3 {
+    color: #fff;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.panel p {
+    color: #aabbd0;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.highlight {
+    color: #93c5fd;
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 14px;
+}
+
+.download-card {
+    padding: 22px;
+    background: linear-gradient(145deg,#17243b,#111b2e);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 13px;
+    transition: .25s;
+}
+
+.download-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96,165,250,.5);
+    box-shadow: 0 12px 30px rgba(0,0,0,.2);
+}
+
+.download-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.download-card h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.download-card p {
+    color: #91a3bc;
+    font-size: 12px;
+    line-height: 1.7;
+    min-height: 40px;
+}
+
+.download-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 17px;
+    padding: 11px;
+    border-radius: 8px;
+    background: linear-gradient(100deg,#2563eb,#6366f1);
+    color: #fff;
+    font-size: 13px;
+    transition: .25s;
+}
+
+.download-btn:hover {
+    filter: brightness(1.2);
+}
+
+.step {
+    display: flex;
+    gap: 17px;
+    padding: 19px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.step:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.step-number {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #93c5fd;
+    background: rgba(59,130,246,.16);
+    font-weight: bold;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h3 {
+    color: #e5edff;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.step-content p {
+    color: #9bacc4;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.notice {
+    padding: 18px 20px;
+    border-radius: 11px;
+    background: rgba(59,130,246,.09);
+    border-left: 3px solid #60a5fa;
+}
+
+.notice p {
+    color: #aabbd0;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.faq-item {
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h3 {
+    color: #dbeafe;
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.faq-item p {
+    color: #91a3bc;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* 视频播放器 */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 13px;
+    background: #000;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 12px 35px rgba(0,0,0,.25);
+}
+
+.video-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+.video-description {
+    margin-top: 13px;
+    color: #91a3bc;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.video-label {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 14px;
+    border-radius: 5px;
+    color: #fca5a5;
+    background: rgba(239,68,68,.12);
+    font-size: 12px;
+}
+
+.footer {
+    padding: 30px 10px;
+    text-align: center;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+@media(max-width:650px) {
+    .container {
+        width: 94%;
+    }
+
+    .hero {
+        padding: 42px 23px;
+    }
+
+    .download-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 19px;
+    }
+
+    .nav-wrap {
+        padding: 14px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-wrap">
+        <div class="logo">炸鱼天团 <span>·</span> 教程中心</div>
+        <a class="back" href="index.html">← 返回资源站</a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">INSTALLATION GUIDE · 001</div>
+            <h1>暴力猴下载与安装教程</h1>
+            <p>从下载安装到安装用户脚本，带你快速了解暴力猴的基本使用方法。按照步骤操作，即可开始使用浏览器用户脚本。</p>
+            <div class="hero-line"></div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">01 · 什么是暴力猴？</h2>
+        <div class="panel">
+            <h3>Violentmonkey（暴力猴）</h3>
+            <p>暴力猴是一款开源的浏览器用户脚本管理器，可以帮助用户安装、管理和运行 UserScript 脚本，从而实现网页功能增强、界面调整和自动化操作等功能。</p>
+            <p style="margin-top:12px;">它本身并不是某个网站的专用工具。安装管理器后，还需要根据实际需求安装对应的用户脚本。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">02 · 选择浏览器下载</h2>
+
+        <div class="download-grid">
+
+            <div class="download-card">
+                <div class="download-icon">🌐</div>
+                <h3>Google Chrome</h3>
+                <p>通过 Chrome 网上应用店安装官方暴力猴扩展。</p>
+                <a class="download-btn" href="https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag" target="_blank" rel="noopener noreferrer">前往 Chrome 商店 ↗</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">🔷</div>
+                <h3>Microsoft Edge</h3>
+                <p>通过 Microsoft Edge 加载项商店获取扩展。</p>
+                <a class="download-btn" href="https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao" target="_blank" rel="noopener noreferrer">前往 Edge 商店 ↗</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">🦊</div>
+                <h3>Mozilla Firefox</h3>
+                <p>通过 Firefox 官方附加组件平台安装。</p>
+                <a class="download-btn" href="https://addons.mozilla.org/firefox/addon/violentmonkey/" target="_blank" rel="noopener noreferrer">前往 Firefox 商店 ↗</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">📦</div>
+                <h3>其他浏览器</h3>
+                <p>查看官方支持的浏览器及其他安装方式。</p>
+                <a class="download-btn" href="https://violentmonkey.github.io/get-it/" target="_blank" rel="noopener noreferrer">查看官方下载页面 ↗</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">03 · 安装步骤</h2>
+        <div class="panel">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>打开对应浏览器的下载入口</h3>
+                    <p>根据自己使用的浏览器，点击上方对应的官方商店入口。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>找到暴力猴扩展</h3>
+                    <p>确认扩展名称为 Violentmonkey，开发者信息与官方项目一致，避免安装名称相似的其他扩展。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>点击添加或获取</h3>
+                    <p>Chrome 点击「添加至 Chrome」，Edge 点击「获取」，Firefox 点击「添加到 Firefox」。按照浏览器提示确认安装。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>确认安装成功</h3>
+                    <p>打开浏览器扩展管理页面，确认暴力猴已经启用。可以将扩展固定到浏览器工具栏，方便后续使用。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>打开暴力猴管理面板</h3>
+                    <p>点击浏览器工具栏中的暴力猴图标，进入脚本管理界面。首次使用时，列表中可能还没有安装任何用户脚本。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">04 · 如何安装用户脚本？</h2>
+        <div class="panel">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>获取可信的脚本文件</h3>
+                    <p>从可信的开发者或官方网站获取用户脚本。通常文件后缀为 .js，也可以通过提供安装入口的脚本发布页面进行安装。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>打开脚本文件</h3>
+                    <p>如果获得的是可安装的用户脚本链接，使用浏览器打开它。暴力猴可能会自动弹出脚本安装确认页面。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>检查脚本信息</h3>
+                    <p>仔细检查脚本名称、作者、匹配的网站范围和权限要求。不要因为脚本名称好听就直接安装。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>确认安装</h3>
+                    <p>确认代码来源可信且权限合理后，点击安装按钮。安装完成后，可以在暴力猴管理面板中查看和启用脚本。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>刷新目标网页</h3>
+                    <p>打开脚本适用的网站并刷新页面。脚本是否运行取决于它设置的网站匹配规则、权限和自身功能。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">05 · 常见问题</h2>
+        <div class="panel">
+
+            <div class="faq-item">
+                <h3>Q：安装后找不到暴力猴图标？</h3>
+                <p>可以打开浏览器的扩展管理页面，确认暴力猴已启用，然后通过工具栏的扩展菜单将它固定。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q：安装脚本后没有效果？</h3>
+                <p>检查脚本是否启用、当前网址是否符合脚本的匹配规则，以及脚本是否支持当前浏览器。之后尝试刷新网页。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q：能否同时安装多个脚本？</h3>
+                <p>可以。暴力猴支持管理多个用户脚本，但不同脚本可能存在功能冲突，建议逐个安装和测试。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q：脚本可以自动更新吗？</h3>
+                <p>部分脚本提供更新地址和版本元数据，暴力猴可以根据脚本更新信息检查更新。具体取决于脚本作者的配置。</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q：为什么某些网站无法运行脚本？</h3>
+                <p>可能是网站匹配规则不包含当前页面、浏览器权限不足、脚本与网站版本不兼容，或者网站自身的页面结构发生变化。</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">06 · 安全使用提醒</h2>
+        <div class="notice">
+            <p>
+                ⚠ 用户脚本可以在匹配的网站页面中执行 JavaScript，因此可能接触网页内容和浏览器授予的相关权限。安装前请检查代码来源、网站匹配范围及权限要求。不要随意安装陌生人提供的脚本，也不要向不可信脚本提供账号密码、Cookie 或其他敏感信息。
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">07 · 视频演示</h2>
+
+        <div class="panel">
+            <div class="video-label">▶ BILIBILI VIDEO</div>
+
+            <h3>暴力猴下载与使用视频</h3>
+
+            <div class="video-container">
+                <iframe
+                    src="https://player.bilibili.com/player.html?bvid=BV1PX4y1G7Rn&page=1&high_quality=1&danmaku=0"
+                    title="暴力猴下载与使用教程"
+                    allowfullscreen="true"
+                    scrolling="no"
+                    frameborder="0"
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+            </div>
+
+            <p class="video-description">
+                视频来源：哔哩哔哩（Bilibili）
+                <br>
+                如果视频无法播放，可以点击下方按钮前往 B 站观看。
+            </p>
+
+            <a
+                class="download-btn"
+                href="https://www.bilibili.com/video/BV1PX4y1G7Rn/"
+                target="_blank"
+                rel="noopener noreferrer">
+                前往 Bilibili 观看 ↗
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="panel">
+            <h3>教程到此结束</h3>
+            <p>现在你已经了解了暴力猴的下载、安装和基本使用流程。接下来可以前往炸鱼天团资源中心，寻找适合自己的用户脚本。</p>
+
+            <a class="download-btn" href="index.html">
+                返回炸鱼天团资源中心 →
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        © 2026 炸鱼天团 | WEB SECURITY RESOURCE CENTER
+        <br><br>
+        Violentmonkey Installation Guide
+    </footer>
+
+</main>
+
+</body>
+</html>
