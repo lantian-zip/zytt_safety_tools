@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090e1c">
-<title>炸鱼天团安全工具 | 防御科普站</title>
+<title>炸鱼天团 | 安全工具资源站</title>
 <style>
 * {
     margin: 0;
@@ -20,12 +20,16 @@ html {
 
 body {
     min-height: 100vh;
+    padding-top: 72px;
     color: #e5eaf5;
     background:
-        radial-gradient(ellipse at 15% 10%, rgba(35,91,180,.2), transparent 40%),
+        radial-gradient(ellipse at 15% 5%, rgba(35,91,180,.2), transparent 40%),
         radial-gradient(ellipse at 85% 40%, rgba(91,55,170,.13), transparent 40%),
         #090e1c;
-    padding-top: 76px;
+}
+
+button, input {
+    font: inherit;
 }
 
 a {
@@ -39,7 +43,7 @@ nav {
     left: 0;
     width: 100%;
     z-index: 999;
-    background: rgba(9,14,28,.82);
+    background: rgba(9,14,28,.85);
     backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(255,255,255,.08);
 }
@@ -47,17 +51,17 @@ nav {
 .nav-wrap {
     max-width: 1100px;
     margin: auto;
-    padding: 17px 24px;
+    padding: 16px 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .nav-logo {
+    color: #fff;
     font-size: 21px;
     font-weight: bold;
     letter-spacing: 1px;
-    color: #fff;
 }
 
 .nav-logo span {
@@ -72,9 +76,8 @@ nav {
     background: rgba(255,255,255,.06);
     border: 1px solid rgba(255,255,255,.1);
     color: #dbeafe;
-    padding: 9px 17px;
+    padding: 9px 16px;
     border-radius: 9px;
-    font-size: 14px;
     cursor: pointer;
     transition: .25s;
 }
@@ -85,15 +88,14 @@ nav {
 }
 
 .dropdown-content {
-    display: block;
     position: absolute;
-    top: calc(100% + 12px);
     right: 0;
+    top: calc(100% + 12px);
     min-width: 155px;
+    padding: 7px;
+    border-radius: 12px;
     background: #131d32;
     border: 1px solid rgba(255,255,255,.1);
-    border-radius: 12px;
-    padding: 7px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -110,15 +112,14 @@ nav {
 
 .dropdown-content a {
     display: block;
-    padding: 11px 13px;
-    border-radius: 7px;
-    font-size: 14px;
+    padding: 11px;
     color: #b8c6dc;
-    transition: .2s;
+    font-size: 14px;
+    border-radius: 7px;
 }
 
 .dropdown-content a:hover {
-    color: #fff;
+    color: white;
     background: rgba(59,130,246,.16);
 }
 
@@ -131,24 +132,23 @@ nav {
 .hero {
     position: relative;
     overflow: hidden;
-    padding: 65px 40px;
+    padding: 65px 42px;
     border-radius: 22px;
     border: 1px solid rgba(96,165,250,.2);
-    background: linear-gradient(125deg, #142746, #111a31 55%, #1b1738);
+    background: linear-gradient(125deg,#142746,#111a31 55%,#1b1738);
     box-shadow: 0 20px 60px rgba(0,0,0,.25);
-    margin-bottom: 25px;
 }
 
 .hero::before {
     content: "";
     position: absolute;
-    width: 300px;
-    height: 300px;
-    right: -80px;
-    top: -120px;
+    width: 320px;
+    height: 320px;
+    right: -90px;
+    top: -130px;
     border-radius: 50%;
     background: rgba(59,130,246,.2);
-    filter: blur(50px);
+    filter: blur(55px);
 }
 
 .hero-content {
@@ -168,8 +168,8 @@ nav {
     letter-spacing: 1px;
 }
 
-h1 {
-    font-size: clamp(30px, 5vw, 46px);
+.hero h1 {
+    font-size: clamp(30px,5vw,46px);
     color: #fff;
     margin-bottom: 15px;
     letter-spacing: 1px;
@@ -179,19 +179,51 @@ h1 {
     color: #aabbd5;
     font-size: 15px;
     line-height: 1.9;
-    max-width: 620px;
+    max-width: 650px;
 }
 
 .hero-line {
     width: 55px;
     height: 4px;
-    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    background: linear-gradient(90deg,#60a5fa,#a78bfa);
     border-radius: 5px;
     margin-top: 25px;
 }
 
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.stat-card {
+    padding: 20px;
+    background: rgba(19,29,49,.8);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 13px;
+    transition: .25s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96,165,250,.4);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #93c5fd;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #899bb5;
+}
+
 .section {
-    margin-top: 35px;
+    margin-top: 38px;
 }
 
 .section-title {
@@ -208,26 +240,26 @@ h1 {
     width: 4px;
     height: 22px;
     border-radius: 5px;
-    background: linear-gradient(#60a5fa, #818cf8);
+    background: linear-gradient(#60a5fa,#818cf8);
 }
 
 .panel {
+    padding: 24px;
     background: rgba(19,29,49,.8);
     border: 1px solid rgba(255,255,255,.07);
     border-radius: 15px;
-    padding: 25px;
     box-shadow: 0 12px 35px rgba(0,0,0,.13);
 }
 
 .panel h3 {
-    font-size: 18px;
     color: #fff;
-    margin-bottom: 13px;
+    font-size: 18px;
+    margin-bottom: 12px;
 }
 
 .panel p {
-    font-size: 14px;
     color: #aabbd0;
+    font-size: 14px;
     line-height: 1.9;
 }
 
@@ -245,97 +277,222 @@ h1 {
 }
 
 .notice-date {
-    color: #93c5fd;
     font-size: 12px;
+    color: #93c5fd;
     margin-bottom: 10px;
 }
 
-.tool-list {
+.resource-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 12px 16px;
+    color: #e5eaf5;
+    background: #111b2e;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 9px;
+    outline: none;
+    transition: .25s;
+}
+
+.search-box:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+}
+
+.search-box::placeholder {
+    color: #71819a;
+}
+
+.category-tabs {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0,1fr));
-    gap: 17px;
+    grid-template-columns: repeat(3,1fr);
+    gap: 13px;
+    margin-bottom: 22px;
 }
 
-.tool-item {
+.category-tab {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 18px;
+    color: #aabbd0;
+    background: rgba(19,29,49,.85);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 13px;
+    cursor: pointer;
+    transition: .25s;
+    text-align: left;
+}
+
+.category-tab:hover {
+    border-color: rgba(96,165,250,.4);
+    transform: translateY(-2px);
+}
+
+.category-tab.active {
+    color: #fff;
+    background: rgba(37,99,235,.16);
+    border-color: #3b82f6;
+    box-shadow: 0 0 20px rgba(59,130,246,.1);
+}
+
+.category-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59,130,246,.15);
+    color: #93c5fd;
+    border-radius: 11px;
+    font-size: 21px;
+}
+
+.category-name {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.category-count {
+    font-size: 12px;
+    color: #8294ae;
+}
+
+.resource-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.resource-heading h3 {
+    color: #e5edff;
+    font-size: 17px;
+}
+
+.resource-heading span {
+    color: #8294ae;
+    font-size: 12px;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 16px;
+}
+
+.resource-card {
     position: relative;
-    overflow: hidden;
-    padding: 24px;
-    border-radius: 15px;
-    background: linear-gradient(145deg, #17243b, #111b2e);
+    padding: 23px;
+    background: linear-gradient(145deg,#17243b,#111b2e);
     border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
     transition: .3s;
+    animation: appear .3s ease;
 }
 
-.tool-item:hover {
+.resource-card:hover {
     transform: translateY(-5px);
     border-color: rgba(96,165,250,.5);
     box-shadow: 0 15px 35px rgba(0,0,0,.25);
 }
 
-.tool-icon {
-    width: 43px;
-    height: 43px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    background: rgba(59,130,246,.15);
-    color: #93c5fd;
-    font-size: 21px;
-    margin-bottom: 17px;
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.tool-item h3 {
-    font-size: 18px;
+.resource-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: rgba(59,130,246,.15);
+    color: #93c5fd;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.resource-card h4 {
     color: #f1f5ff;
+    font-size: 17px;
     margin-bottom: 11px;
 }
 
-.meta {
+.resource-meta {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 9px;
-    font-size: 12px;
-    color: #8495ae;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 13px;
+    color: #8294ae;
+    font-size: 12px;
 }
 
 .tag {
     padding: 4px 9px;
-    background: rgba(59,130,246,.15);
     color: #93c5fd;
+    background: rgba(59,130,246,.15);
     border-radius: 5px;
 }
 
-.tool-item p {
+.resource-card p {
+    min-height: 45px;
+    color: #aabbd0;
     font-size: 13px;
     line-height: 1.8;
-    color: #aabbd0;
-    min-height: 45px;
 }
 
-.download-btn {
-    display: inline-flex;
-    align-items: center;
+.resource-btn {
+    display: flex;
     justify-content: center;
-    margin-top: 20px;
-    width: 100%;
+    align-items: center;
+    margin-top: 18px;
     padding: 11px;
-    background: linear-gradient(100deg, #2563eb, #6366f1);
+    border-radius: 8px;
+    background: linear-gradient(100deg,#2563eb,#6366f1);
     color: #fff;
     font-size: 14px;
-    border-radius: 8px;
     transition: .25s;
 }
 
-.download-btn:hover {
+.resource-btn:hover {
     filter: brightness(1.2);
     box-shadow: 0 5px 20px rgba(59,130,246,.3);
 }
 
+.empty {
+    grid-column: 1/-1;
+    padding: 45px 15px;
+    text-align: center;
+    color: #8294ae;
+    background: rgba(19,29,49,.5);
+    border: 1px dashed rgba(255,255,255,.12);
+    border-radius: 13px;
+    font-size: 14px;
+}
+
 .disclaimer {
-    margin-top: 35px;
+    margin-top: 38px;
     padding: 22px;
     background: rgba(30,41,59,.65);
     border: 1px solid rgba(255,255,255,.07);
@@ -344,8 +501,8 @@ h1 {
 
 .disclaimer h4 {
     color: #cbd5e1;
-    margin-bottom: 10px;
     font-size: 15px;
+    margin-bottom: 10px;
 }
 
 .disclaimer p {
@@ -366,43 +523,65 @@ h1 {
     scroll-margin-top: 95px;
 }
 
-@media(max-width:700px) {
-    body {
-        padding-top: 65px;
-    }
-
-    .nav-wrap {
-        padding: 14px 18px;
-    }
-
-    .nav-logo {
-        font-size: 18px;
-    }
-
+@media(max-width:750px) {
     .container {
         width: 94%;
-        margin-top: 18px;
     }
 
     .hero {
-        padding: 45px 24px;
-        border-radius: 17px;
+        padding: 45px 25px;
     }
 
-    .tool-list {
+    .category-tabs {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .category-tab {
+        padding: 13px;
+    }
+
+    .resource-grid {
         grid-template-columns: 1fr;
     }
 
     .panel {
         padding: 20px;
     }
+}
 
-    .section-title {
-        font-size: 19px;
+@media(max-width:450px) {
+    .nav-wrap {
+        padding: 14px;
+    }
+
+    .nav-logo {
+        font-size: 17px;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 13px 9px;
+    }
+
+    .stat-number {
+        font-size: 22px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .panel {
+        padding: 19px;
     }
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -413,7 +592,7 @@ h1 {
             <div class="dropdown-content">
                 <a href="#intro">关于我们</a>
                 <a href="#announce">版本公告</a>
-                <a href="#tools">工具下载</a>
+                <a href="#tools">资源中心</a>
             </div>
         </div>
     </div>
@@ -423,12 +602,27 @@ h1 {
 
     <header class="hero">
         <div class="hero-content">
-            <div class="hero-tag">WEB SECURITY · DEFENSE CENTER</div>
+            <div class="hero-tag">WEB SECURITY · RESOURCE CENTER</div>
             <h1>炸鱼天团安全工具</h1>
-            <p>专注 Web 安全防御知识分享，提供安全工具、技术文档与防护方案。探索安全技术，构建更加可靠的网络环境。</p>
+            <p>专注 Web 安全防御知识分享，提供脚本工具、Scratch 作品源码与技术教程。探索安全技术，分享实用工具，构建更加可靠的网络环境。</p>
             <div class="hero-line"></div>
         </div>
     </header>
+
+    <section class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="jsCount">0</div>
+            <div class="stat-label">JS 脚本</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="scratchCount">0</div>
+            <div class="stat-label">Scratch 作品源码</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="tutorialCount">0</div>
+            <div class="stat-label">使用及教程</div>
+        </div>
+    </section>
 
     <section id="intro" class="section">
         <h2 class="section-title">关于我们</h2>
@@ -442,66 +636,366 @@ h1 {
     <section id="announce" class="section">
         <h2 class="section-title">版本公告</h2>
         <div class="panel notice-board">
-            <div class="notice-date">2026.11.08 · SITE UPDATE</div>
-            <h3>📢 站点正式上线</h3>
-            <p>站点上线，首批防御学习资源开放下载。所有资料仅用于防御技术学习，禁止非授权测试。后续会持续更新防护规则、学习文档。</p>
+            <div class="notice-date">2026.11.15 · SITE UPDATE</div>
+            <h3>📢 资源中心正式升级</h3>
+            <p>网站资源中心完成改版，新增 JS 脚本、Scratch 作品源码、使用及教程三大分类，支持分类切换与资源搜索。后续将持续更新更多实用资源。</p>
         </div>
     </section>
 
     <section id="tools" class="section">
-        <h2 class="section-title">资源下载</h2>
+        <h2 class="section-title">资源中心</h2>
 
-        <div class="tool-list">
+        <div class="resource-top">
+            <input
+                id="searchInput"
+                class="search-box"
+                type="search"
+                placeholder="搜索资源名称、版本或介绍..."
+                autocomplete="off"
+            >
+        </div>
 
-            <div class="tool-item">
-                <div class="tool-icon">🛡</div>
-                <h3>防御工具 V1.0</h3>
-                <div class="meta">
-                    <span class="tag">基础版</span>
-                    <span>12MB</span>
-                    <span>2026.11.08</span>
+        <div class="category-tabs">
+
+            <button class="category-tab active" data-category="js">
+                <div class="category-icon">⌘</div>
+                <div>
+                    <div class="category-name">JS 脚本</div>
+                    <div class="category-count" id="jsTabCount">0 个资源</div>
                 </div>
-                <p>基础防护学习包，包含基础防护规则与示例文档。</p>
-                <a href="防御工具V1.0.zip" download class="download-btn">↓ 下载资源</a>
-            </div>
+            </button>
 
-            <div class="tool-item">
-                <div class="tool-icon">🔐</div>
-                <h3>防御工具 V2.0</h3>
-                <div class="meta">
-                    <span class="tag">增强版</span>
-                    <span>24MB</span>
-                    <span>2026.11.08</span>
+            <button class="category-tab" data-category="scratch">
+                <div class="category-icon">🧩</div>
+                <div>
+                    <div class="category-name">Scratch 作品源码</div>
+                    <div class="category-count" id="scratchTabCount">0 个资源</div>
                 </div>
-                <p>防护规则更新，新增常见攻击特征识别案例。</p>
-                <a href="防御工具V2.0.zip" download class="download-btn">↓ 下载资源</a>
-            </div>
+            </button>
 
-            <div class="tool-item">
-                <div class="tool-icon">📚</div>
-                <h3>防护学习文档包</h3>
-                <div class="meta">
-                    <span class="tag">学习资料</span>
-                    <span>8MB</span>
-                    <span>2026.11.08</span>
+            <button class="category-tab" data-category="tutorial">
+                <div class="category-icon">📖</div>
+                <div>
+                    <div class="category-name">使用及教程</div>
+                    <div class="category-count" id="tutorialTabCount">0 个资源</div>
                 </div>
-                <p>Web 防御知识文档、原理讲解与防护思路参考。</p>
-                <a href="防护学习文档包.zip" download class="download-btn">↓ 下载资源</a>
-            </div>
+            </button>
 
         </div>
+
+        <div class="resource-heading">
+            <h3 id="currentCategory">JS 脚本</h3>
+            <span id="resultCount">共 0 个资源</span>
+        </div>
+
+        <div class="resource-grid" id="resourceGrid"></div>
     </section>
 
     <section class="disclaimer">
         <h4>⚠ 免责声明</h4>
-        <p>本站所有资源仅面向网络安全爱好者，用于合法安全学习、本地授权环境下的防御研究。严禁将资源用于任何未经授权的扫描、入侵、破坏等违法行为。使用者需自行承担使用资源产生的全部责任。</p>
+        <p>本站所有资源仅面向网络安全爱好者，用于合法安全学习、本地授权环境下的防御研究。严禁将资源用于任何未经授权的扫描、入侵、破坏等违法行为。使用者需自行承担使用资源产生的全部责任。本站资源请在使用前自行核实来源与安全性。</p>
     </section>
 
     <footer class="footer">
-        © 2026 炸鱼天团 | WEB SECURITY DEFENSE CENTER
+        © 2026 炸鱼天团 | WEB SECURITY RESOURCE CENTER
     </footer>
 
 </main>
+
+<script>
+
+// ==================== 分类配置 ====================
+
+const categoryNames = {
+    js: "JS 脚本",
+    scratch: "Scratch 作品源码",
+    tutorial: "使用及教程"
+};
+
+// ==================== 资源数据区域 ====================
+// 所有资源均在这里添加和修改
+// category:
+// js = JS 脚本
+// scratch = Scratch 作品源码
+// tutorial = 使用及教程
+//
+// url = 文件相对路径
+// action = 按钮显示文字
+// icon = 资源图标
+// date = 更新时间
+// version = 版本信息
+
+const resources = [
+
+    // ==========================================
+    // JS 脚本资源模板
+    // 复制下面的对象即可添加新的 JS 脚本
+    // 文件建议放在 tools 文件夹内
+    // ==========================================
+
+    {
+        category: "js",
+        name: "MC联机乱斗控制面板",
+        version: "JS",
+        type: "游戏辅助",
+        date: "2026.11.15",
+        description: "MC联机乱斗相关控制面板脚本。",
+        icon: "🎮",
+        url: "mc联机乱斗控制面板.js",
+        action: "下载脚本"
+    },
+
+    {
+        category: "js",
+        name: "拾荒控制面板",
+        version: "JS",
+        type: "游戏辅助",
+        date: "2026.11.15",
+        description: "拾荒相关控制面板工具。",
+        icon: "⚙",
+        url: "拾荒控制面板.js",
+        action: "下载脚本"
+    },
+
+    /*
+    JS 脚本新增模板：
+
+    {
+        category: "js",
+        name: "脚本名称",
+        version: "V1.0",
+        type: "脚本类型",
+        date: "2026.11.15",
+        description: "脚本功能介绍。",
+        icon: "🛡",
+        url: "脚本文件名.js",
+        action: "下载脚本"
+    },
+
+    */
+
+    // ==========================================
+    // Scratch 作品源码模板
+    // 复制下面的对象即可添加新的作品源码
+    // 支持 .sb3 等项目文件
+    // ==========================================
+
+    {
+        category: "scratch",
+        name: "Cave.io V1.7.114723",
+        version: "V1.7.114723",
+        type: "Scratch 作品",
+        date: "2026.11.15",
+        description: "Cave.io 对应的 SB3 项目源码。",
+        icon: "🧩",
+        url: "cave.io V1.7.114723 破解版本.sb3",
+        action: "下载源码"
+    },
+
+    /*
+    Scratch 作品新增模板：
+
+    {
+        category: "scratch",
+        name: "作品名称",
+        version: "V1.0",
+        type: "Scratch 作品",
+        date: "2026.11.15",
+        description: "作品内容介绍。",
+        icon: "🎮",
+        url: "作品文件名.sb3",
+        action: "下载源码"
+    },
+
+    */
+
+    // ==========================================
+    // 使用及教程模板
+    // 复制下面的对象即可添加新的教程
+    // 教程建议使用 HTML 文件
+    // ==========================================
+
+    {
+        category: "tutorial",
+        name: "暴力猴下载教程",
+        version: "HTML",
+        type: "使用教程",
+        date: "2026.11.15",
+        description: "暴力猴浏览器扩展的下载及安装教程。",
+        icon: "📖",
+        url: "暴力猴下载教程.html",
+        action: "阅读教程"
+    },
+
+    /*
+    教程新增模板：
+
+    {
+        category: "tutorial",
+        name: "教程名称",
+        version: "图文教程",
+        type: "使用指南",
+        date: "2026.11.15",
+        description: "教程内容介绍。",
+        icon: "📚",
+        url: "教程文件名.html",
+        action: "阅读教程"
+    },
+
+    */
+
+];
+
+// ==================== 页面功能区域 ====================
+
+const categoryTabs = document.querySelectorAll(".category-tab");
+const resourceGrid = document.getElementById("resourceGrid");
+const searchInput = document.getElementById("searchInput");
+const currentCategory = document.getElementById("currentCategory");
+const resultCount = document.getElementById("resultCount");
+
+let activeCategory = "js";
+
+// ==================== HTML 安全转义 ====================
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+// ==================== 资源数量统计 ====================
+
+function updateStats() {
+
+    const counts = {
+        js: resources.filter(item => item.category === "js").length,
+        scratch: resources.filter(item => item.category === "scratch").length,
+        tutorial: resources.filter(item => item.category === "tutorial").length
+    };
+
+    document.getElementById("jsCount").textContent = counts.js;
+    document.getElementById("scratchCount").textContent = counts.scratch;
+    document.getElementById("tutorialCount").textContent = counts.tutorial;
+
+    document.getElementById("jsTabCount").textContent = counts.js + " 个资源";
+    document.getElementById("scratchTabCount").textContent = counts.scratch + " 个资源";
+    document.getElementById("tutorialTabCount").textContent = counts.tutorial + " 个资源";
+}
+
+// ==================== 资源渲染 ====================
+
+function renderResources() {
+
+    const keyword = searchInput.value.trim().toLowerCase();
+
+    const filtered = resources.filter(item => {
+
+        const matchesCategory = item.category === activeCategory;
+
+        const content = [
+            item.name,
+            item.version,
+            item.type,
+            item.description
+        ].join(" ").toLowerCase();
+
+        return matchesCategory && content.includes(keyword);
+
+    });
+
+    currentCategory.textContent = categoryNames[activeCategory];
+    resultCount.textContent = "共 " + filtered.length + " 个资源";
+
+    if (filtered.length === 0) {
+
+        resourceGrid.innerHTML = `
+            <div class="empty">
+                没有找到相关资源，试试其他关键词吧。
+            </div>
+        `;
+
+        return;
+    }
+
+    resourceGrid.innerHTML = filtered.map(item => {
+
+        const isTutorial = item.category === "tutorial";
+
+        return `
+            <article class="resource-card">
+
+                <div class="resource-icon">
+                    ${escapeHTML(item.icon)}
+                </div>
+
+                <h4>${escapeHTML(item.name)}</h4>
+
+                <div class="resource-meta">
+                    <span class="tag">
+                        ${escapeHTML(item.type)}
+                    </span>
+
+                    <span>
+                        ${escapeHTML(item.version)}
+                    </span>
+
+                    <span>
+                        ${escapeHTML(item.date)}
+                    </span>
+                </div>
+
+                <p>
+                    ${escapeHTML(item.description)}
+                </p>
+
+                <a
+                    class="resource-btn"
+                    href="${escapeHTML(item.url)}"
+                    ${isTutorial ? "" : "download"}
+                >
+                    ${escapeHTML(item.action)}　→
+                </a>
+
+            </article>
+        `;
+
+    }).join("");
+
+}
+
+// ==================== 分类切换 ====================
+
+categoryTabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        activeCategory = tab.dataset.category;
+
+        categoryTabs.forEach(item => {
+            item.classList.toggle("active", item === tab);
+        });
+
+        renderResources();
+
+    });
+
+});
+
+// ==================== 搜索功能 ====================
+
+searchInput.addEventListener("input", renderResources);
+
+// ==================== 初始化 ====================
+
+updateStats();
+renderResources();
+
+</script>
 
 </body>
 </html>
