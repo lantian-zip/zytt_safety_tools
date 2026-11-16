@@ -1,1 +1,576 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090e1c">
+<title>炸鱼天团 | 通缉令</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #090e1c;
+    --panel: #111a2e;
+    --panel-light: #17233b;
+    --blue: #6366f1;
+    --purple: #8b5cf6;
+    --red: #ef4444;
+    --text: #e5e7eb;
+    --muted: #8491a8;
+    --border: rgba(148, 163, 184, 0.13);
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(79, 70, 229, 0.15), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.1), transparent 35%),
+        var(--bg);
+    color: var(--text);
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar {
+    width: 100%;
+    height: 72px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(9, 14, 28, 0.82);
+    backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    box-shadow: 0 5px 20px rgba(99, 102, 241, 0.3);
+}
+
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    border-radius: 10px;
+    color: #c7d2fe;
+    background: rgba(99, 102, 241, 0.12);
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.back-home:hover {
+    color: #fff;
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.hero {
+    padding: 85px 0 55px;
+    text-align: center;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 30px;
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.08);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin: 24px 0 16px;
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 900;
+    letter-spacing: 5px;
+    background: linear-gradient(90deg, #fff, #fca5a5, #ef4444);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    padding: 24px;
+    background: rgba(17, 26, 46, 0.78);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.25s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.stat-number {
+    display: block;
+    font-size: 30px;
+    font-weight: 800;
+    color: #fca5a5;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.section-title span {
+    color: var(--red);
+}
+
+.search-box {
+    width: 300px;
+    max-width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: rgba(17, 26, 46, 0.9);
+    color: #fff;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.search-box:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.person-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-bottom: 70px;
+}
+
+.person-card {
+    position: relative;
+    overflow: hidden;
+    padding: 23px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(23, 35, 59, 0.95), rgba(17, 26, 46, 0.95));
+    transition: 0.25s;
+}
+
+.person-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.person-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), transparent);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.person-id {
+    color: #fca5a5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.1);
+    font-size: 11px;
+}
+
+.person-name {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.person-description {
+    min-height: 45px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+    word-break: break-word;
+}
+
+.person-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 9px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.25s;
+}
+
+.person-link:hover {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+}
+
+.empty {
+    display: none;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--muted);
+    border: 1px dashed var(--border);
+    border-radius: 15px;
+}
+
+.notice {
+    margin-bottom: 65px;
+    padding: 22px 25px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 13px;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.notice-title {
+    color: #fca5a5;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.notice p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+footer {
+    padding: 30px 7%;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+}
+
+@media (max-width: 900px) {
+    .person-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0 5%;
+        height: 65px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    .back-home {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .hero {
+        padding: 65px 0 40px;
+    }
+
+    .stats {
+        gap: 9px;
+    }
+
+    .stat-card {
+        padding: 17px 8px;
+    }
+
+    .stat-number {
+        font-size: 23px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .person-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <span>炸鱼天团</span>
+    </div>
+    <a href="index.html" class="back-home">
+        <span>←</span>
+        返回主页
+    </a>
+</nav>
+
+<main class="container">
+
+    <section class="hero">
+        <div class="hero-tag">⚠ PUBLIC RECORDS</div>
+        <h1>通缉令档案</h1>
+        <p>公开资料展示与主页索引<br>记录公开信息，保持理性判断。</p>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <span class="stat-number" id="totalCount">0</span>
+            <span class="stat-label">档案总数</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" id="linkCount">0</span>
+            <span class="stat-label">主页链接</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">公开</span>
+            <span class="stat-label">资料类型</span>
+        </div>
+    </section>
+
+    <section>
+        <div class="toolbar">
+            <div class="section-title">人员 <span>档案</span></div>
+            <input
+                type="text"
+                class="search-box"
+                id="searchInput"
+                placeholder="搜索姓名或编号..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="person-grid" id="personGrid"></div>
+
+        <div class="empty" id="empty">
+            <div style="font-size:32px;margin-bottom:12px;">⌕</div>
+            没有找到相关档案
+        </div>
+    </section>
+
+    <section class="notice">
+        <div class="notice-title">⚠ 信息使用说明</div>
+        <p>
+            本页面用于展示公开主页链接及可核实的公开资料。
+            页面内容不代表对任何人的违法或违规认定。
+            请勿利用页面信息进行骚扰、威胁、人肉搜索或其他侵害他人权益的行为。
+            如发现信息错误或存在隐私问题，请及时联系页面维护者处理。
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <div>炸鱼天团 · 安全工具资源站</div>
+    <div>PUBLIC RECORDS SYSTEM</div>
+</footer>
+
+<script>
+const persons = [
+    {
+        id: "001",
+        name: "示例人物 A",
+        url: "https://www.ccw.site/",
+        description: "公开主页资料展示，请替换为经过核实的信息。"
+    },
+];
+
+const personGrid = document.getElementById("personGrid");
+const searchInput = document.getElementById("searchInput");
+const empty = document.getElementById("empty");
+
+function isValidUrl(value) {
+    try {
+        const url = new URL(value);
+        return url.protocol === "https:" || url.protocol === "http:";
+    } catch {
+        return false;
+    }
+}
+
+function renderPersons(keyword = "") {
+    const filtered = persons.filter(person => {
+        const searchText = (
+            person.name + " " +
+            person.id + " " +
+            person.description
+        ).toLowerCase();
+
+        return searchText.includes(keyword.toLowerCase());
+    });
+
+    personGrid.innerHTML = "";
+
+    filtered.forEach(person => {
+        const card = document.createElement("article");
+        card.className = "person-card";
+
+        const top = document.createElement("div");
+        top.className = "card-top";
+
+        const id = document.createElement("span");
+        id.className = "person-id";
+        id.textContent = "NO." + person.id;
+
+        const status = document.createElement("span");
+        status.className = "status";
+        status.textContent = "公开档案";
+
+        top.append(id, status);
+
+        const name = document.createElement("h2");
+        name.className = "person-name";
+        name.textContent = person.name;
+
+        const description = document.createElement("p");
+        description.className = "person-description";
+        description.textContent = person.description;
+
+        card.append(top, name, description);
+
+        if (isValidUrl(person.url)) {
+            const link = document.createElement("a");
+            link.className = "person-link";
+            link.href = person.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "访问公开主页 ↗";
+            card.append(link);
+        } else {
+            const unavailable = document.createElement("div");
+            unavailable.className = "person-link";
+            unavailable.textContent = "主页链接暂不可用";
+            card.append(unavailable);
+        }
+
+        personGrid.appendChild(card);
+    });
+
+    empty.style.display = filtered.length ? "none" : "block";
+    personGrid.style.display = filtered.length ? "grid" : "none";
+}
+
+function updateStats() {
+    document.getElementById("totalCount").textContent = persons.length;
+
+    const validLinks = persons.filter(person =>
+        isValidUrl(person.url)
+    ).length;
+
+    document.getElementById("linkCount").textContent = validLinks;
+}
+
+searchInput.addEventListener("input", event => {
+    renderPersons(event.target.value.trim());
+});
+
+updateStats();
+renderPersons();
+</script>
+
+</body>
+</html>
+
