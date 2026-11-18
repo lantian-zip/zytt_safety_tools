@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         拾荒者 · 一键清场独立版 · zytt 蓝天_zip
+// @name         拾荒者 · 一键清场 · zytt 蓝天_zip
 // @namespace    https://shz-clear.local/
 // @version      1.0.0
 // @description  独立面板，分别向当前房间其他玩家和人机发送本轮清场伤害请求。
