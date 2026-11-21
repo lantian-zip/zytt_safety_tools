@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name 云种田精简锁定工具
-// @version 1.6.1
+// @name 云种田精简工具
+// @version 1.0.0
 // @description 自动发现Scratch VM，仅提供金币和经验数值锁定
 // @match http://*/*
 // @match https://*/*
