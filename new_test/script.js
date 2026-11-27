@@ -188,7 +188,7 @@
         "date": "2026.11.15",
         "description": "Cave.io 对应的 SB3 项目源码。",
         "icon": "🧩",
-        "url": "/zytt_safety_tools/tools/cave.io V1.7.114723 破解版.sb3",
+        "url": "https://lantian-zip.github.io/zytt_safety_tools/tools/cave.io V1.7.114723 破解版.sb3",
         "action": "下载源码",
         "download": true
     },
@@ -200,7 +200,7 @@
         "date": "2026.11.16",
         "description": "by ycy 请搭配角色插入器使用",
         "icon": "😊",
-        "url": "/zytt_safety_tools/tools/拾荒者外挂系统（ycy） (1).sprite3",
+        "url": "https://lantian-zip.github.io/zytt_safety_tools/tools/拾荒者外挂系统（ycy） (1).sprite3",
         "action": "下载资源",
         "download": true
     },
@@ -212,7 +212,7 @@
         "date": "2026.11.15",
         "description": "暴力猴浏览器扩展的下载及安装教程。",
         "icon": "📖",
-        "url": "/zytt_safety_tools/tools/暴力猴下载教程.html",
+        "url": "https://lantian-zip.github.io/zytt_safety_tools/tools/暴力猴下载教程.html",
         "action": "阅读教程"
     },
     {
@@ -223,7 +223,7 @@
         "date": "2026.11.16",
         "description": "曾经那些惹过我们的，我会让你们付出代价",
         "icon": "📖",
-        "url": "/zytt_safety_tools/black.html",
+        "url": "https://lantian-zip.github.io/zytt_safety_tools/black.html",
         "action": "阅读教程"
     }
 ];
